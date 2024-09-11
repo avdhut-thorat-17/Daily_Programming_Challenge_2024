@@ -50,29 +50,49 @@ class MissingNumber {
         return totalSum - arrSum;
     }
 
+    // optimised way
+    // time : O(n);
+    // space : O(1)
+    public int findMissingNumberXOR(int[] arr,int n){
+        // xor
+        int xor1 = 0;
+        int xor2 = 0;
+        for(int i=0;i<arr.length;i++){
+            xor1 ^= arr[i];
+        }
+        for(int i=1;i<=n;i++){
+            xor2 ^= i;
+        }
+        return xor1 ^ xor2;
+    }
+
     public static void main(String[] args) {
         MissingNumber mn = new MissingNumber();
 
         int[] arr1 = {1, 2, 4, 5};
         int n1 = 5;
-        System.out.println("Brute Force: " + mn.findMissingNumberBruteForce(arr1, n1)); // Output: 3
+        System.out.println("XOR: " + mn.findMissingNumberXOR(arr1, n1)); // Output: 3
+        System.out.println("Brute Force: " + mn.findMissingNumberBruteForce(arr1, n1)); // Output: 1
         System.out.println("Sorted: " + mn.findMissingNumberSorted(arr1, n1)); // Output: 3
         System.out.println("Optimal: " + mn.findMissingNumberOptimal(arr1, n1)); // Output: 3
 
         int[] arr2 = {2, 3, 4, 5};
         int n2 = 5;
+        System.out.println("XOR: " + mn.findMissingNumberXOR(arr2, n2)); // Output: 1
         System.out.println("Brute Force: " + mn.findMissingNumberBruteForce(arr2, n2)); // Output: 1
         System.out.println("Sorted: " + mn.findMissingNumberSorted(arr2, n2)); // Output: 1
         System.out.println("Optimal: " + mn.findMissingNumberOptimal(arr2, n2)); // Output: 1
 
         int[] arr3 = {1, 2, 3, 4};
         int n3 = 5;
+        System.out.println("XOR: " + mn.findMissingNumberXOR(arr3, n2)); // Output: 1
         System.out.println("Brute Force: " + mn.findMissingNumberBruteForce(arr3, n3)); // Output: 5
         System.out.println("Sorted: " + mn.findMissingNumberSorted(arr3, n3)); // Output: 5
         System.out.println("Optimal: " + mn.findMissingNumberOptimal(arr3, n3)); // Output: 5
 
         int[] arr4 = {1};
         int n4 = 2;
+        System.out.println("XOR: " + mn.findMissingNumberXOR(arr4, n2)); // Output: 1
         System.out.println("Brute Force: " + mn.findMissingNumberBruteForce(arr4, n4)); // Output: 2
         System.out.println("Sorted: " + mn.findMissingNumberSorted(arr4, n4)); // Output: 2
         System.out.println("Optimal: " + mn.findMissingNumberOptimal(arr4, n4)); // Output: 2
